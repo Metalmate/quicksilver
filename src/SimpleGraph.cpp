@@ -39,11 +39,11 @@ uint32_t SimpleGraph::getNoDistinctEdges() const {
 
         std::sort(sourceVec.begin(), sourceVec.end(), sortPairs);
 
-        uint32_t currentTarget;
-        uint32_t currentLabel;
+        uint32_t currentTarget = 0;
+        uint32_t currentLabel = 0;
         for (std::pair<uint32_t,uint32_t> labelTgtPair: sourceVec) {
-            //  Only increment count when: currentTarget == NULL OR currentTarget != matched target OR currentLabel != matched label
-            if (!currentTarget || currentTarget != labelTgtPair.second || currentLabel != labelTgtPair.first) {
+            //  Only increment count when: currentTarget == 0 OR currentTarget != matched target OR currentLabel != matched label
+            if (currentTarget == 0 || currentTarget != labelTgtPair.second || currentLabel != labelTgtPair.first) {
                 ++sum;
                 currentTarget = labelTgtPair.second;
                 currentLabel = labelTgtPair.first;
